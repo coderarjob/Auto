@@ -34,6 +34,8 @@ namespace omnirover.auto.Operations
         }
 
         public MessageBoxOperation(ControlIdentity control,string[] args):base(control,args)
-        { }
+        {
+            
+        }
     }
 }
