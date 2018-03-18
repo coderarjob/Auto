@@ -9,6 +9,15 @@ namespace omnirover.auto.Operations
     {
         public override string Name => "FocusWindow";
 
+        public override string OperationString
+        {
+            get
+            {
+                return string.Format("Focuses on control: ID={0}, Index:{1}, Window: '{2}'",
+                    Control.ControlID, Control.Index, Control.WindowTitle);
+            }
+        }
+
         public override void Execute()
         {
             IntPtr parentHandle;

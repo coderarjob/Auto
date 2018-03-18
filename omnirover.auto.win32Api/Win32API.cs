@@ -11,6 +11,18 @@ namespace omnirover.auto
         private static List<IntPtr> handles = new List<IntPtr>();
         public delegate void EnumChildWindowsProc(IntPtr hwnd, int lparam);
 
+        #region APIs
+
+        /*
+        UINT WINAPI SendInput(
+              _In_ UINT    nInputs,
+              _In_ LPINPUT pInputs,
+              _In_ int     cbSize
+            ); 
+        */
+        [DllImport("user32")]
+        public static extern int SendInput(int inputs, INPUT[] pInputs, int cbSize);
+
         [DllImport("user32")]
         public static extern IntPtr GetWindowDC(IntPtr hwnd);
 
@@ -85,13 +97,101 @@ namespace omnirover.auto
 
         [DllImport("user32.dll")]
         public static extern IntPtr SetForegroundWindow(IntPtr WHND);
-        
+        #endregion //APIs
+
+        #region Constants
         public const int WM_CHAR = 0x0102;
         public const int BM_CLICK = 0x00F5;
         public const int WM_SETFOCUS = 0x0007;
         public const int SW_RESTORE = 9;
         public const int SW_SHOWMAXIMIZED = 3;
         public const int SW_SHOWNORMAL = 1;
+        public const int INPUT_MOUSE = 0;
+        public const int INPUT_KEYBOARD = 1;
+        public const int INPUT_HARDWARE = 2;
+        public const int KEYEVENTF_KEYUP = 2;
+        #endregion
+
+        #region Structures
+
+        /*
+        typedef struct tagMOUSEINPUT {
+          LONG      dx; //32bit
+          LONG      dy; /32bit
+          DWORD     mouseData; //32bit
+          DWORD     dwFlags; //32bit
+          DWORD     time; //32bit
+          ULONG_PTR dwExtraInfo; //64bit on 64bit system else 32bit
+        } MOUSEINPUT, *PMOUSEINPUT;  
+        */
+        [StructLayout(LayoutKind.Sequential,Pack =1)]
+        public struct MOUSEINPUT
+        {
+            public Int32 dx;
+            public Int32 dy;
+            public Int32 mouseData;
+            public Int32 dwFlags;
+            public Int32 time;
+            public Int32 dwExtraIndo;
+        }
+
+        /*
+         typedef struct tagKEYBDINPUT {
+          WORD      wVk; //16bit
+          WORD      wScan; //16bit
+          DWORD     dwFlags; //32bit
+          DWORD     time; //32bit
+          ULONG_PTR dwExtraInfo; //64bit
+        } KEYBDINPUT, *PKEYBDINPUT;
+         */
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct KEYBDINPUT
+        {
+            public Int16 wVK;
+            public Int16 wScan;
+            public Int32 dwFlags;
+            public Int32 time;
+            public Int32 dwExtraIndo;
+        }
+
+        /*
+         typedef struct tagHARDWAREINPUT {
+              DWORD uMsg; //32bit
+              WORD  wParamL; //32bit
+              WORD  wParamH; //32bit
+            } HARDWAREINPUT, *PHARDWAREINPUT;
+         */
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct HARDWAREINPUT
+        {
+            public Int32 uMsg;
+            public Int16 wParamL;
+            public Int16 wParamH;
+        }
+        /*
+        typedef struct tagINPUT {
+              DWORD type;
+              union {
+                MOUSEINPUT    mi;
+                KEYBDINPUT    ki;
+                HARDWAREINPUT hi;
+              };
+            } INPUT, *PINPUT; 
+        */
+        [StructLayout(LayoutKind.Explicit,Pack =1)]
+        public struct INPUT_UNION
+        {
+            [FieldOffset(0)] public MOUSEINPUT mi;
+            [FieldOffset(0)] public KEYBDINPUT ki;
+            [FieldOffset(0)] public HARDWAREINPUT hi;
+        }
+
+        [StructLayout(LayoutKind.Sequential,Pack =1)]
+        public struct INPUT
+        {
+            public Int32 type;
+            public INPUT_UNION input;
+        }
 
         public struct Point
         {
@@ -118,6 +218,27 @@ namespace omnirover.auto
 
             public int Width { get { return Right - Left; } }
             public int Height { get { return Bottom - Top; } }
+        }
+        #endregion
+
+        public static int SendKey(char key, bool isKeyReleased)
+        {
+            return SendKey(ASCIIEncoding.ASCII.GetBytes(new char[] { key })[0],isKeyReleased);
+        }
+
+        public static int SendKey(Int16 key,bool isKeyReleased)
+        {
+            INPUT newInput = new INPUT() ;
+            newInput.type = INPUT_KEYBOARD;
+            newInput.input.ki.wVK = key;
+            newInput.input.ki.wScan = 0;
+            newInput.input.ki.dwFlags = 0;
+            if (isKeyReleased)
+                newInput.input.ki.dwFlags = (1 << (KEYEVENTF_KEYUP - 1));
+            newInput.input.ki.dwExtraIndo = 0;
+            newInput.input.ki.time = 0;
+
+            return SendInput(1, new INPUT[] { newInput }, Marshal.SizeOf(typeof(INPUT)));
         }
 
         public static int GetWindowIndexFromWindowHandle(IntPtr windowHandle,IntPtr controlhandle)

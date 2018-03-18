@@ -10,14 +10,22 @@ namespace omnirover.auto.Operations
     {
         public override string Name => "Open";
 
+        public override string OperationString
+        {
+            get
+            {
+                return string.Format("Opens: {0}",Arguments[0]);
+            }
+        }
+
         public override void Execute()
         {
-            if (Args[0] is null)
+            if (Arguments[0] is null)
                 throw new Exception("Invalid argument.");
-            if (Args.Count == 1)
-                Process.Start(Args[0]);
+            if (Arguments.Count == 1)
+                Process.Start(Arguments[0]);
             else
-                Process.Start(Args[0],Args[1]);
+                Process.Start(Arguments[0],Arguments[1]);
         }
 
         public OpenOperation(ControlIdentity control, string[] args) : base(control, args) { }

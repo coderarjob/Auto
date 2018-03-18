@@ -29,12 +29,12 @@ namespace omnirover.auto
 
                 wr.Write(item.Name);
 
-                if (item.Args == null)
+                if (item.Arguments == null)
                     wr.Write((Int32)ARGUMENT_IS_NULL);
                 else
                 {
-                    wr.Write((Int32)item.Args.Count);
-                    foreach (string theArg in item.Args)
+                    wr.Write((Int32)item.Arguments.Count);
+                    foreach (string theArg in item.Arguments)
                         wr.Write(theArg);
                 }
             }

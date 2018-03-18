@@ -48,6 +48,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ProgramList = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.InsertOperationButton = new System.Windows.Forms.Button();
             this.AddOperationButton = new System.Windows.Forms.Button();
             this.ArgumentsTextBox = new System.Windows.Forms.TextBox();
             this.CurrentControlRadioButton = new System.Windows.Forms.RadioButton();
@@ -61,7 +62,8 @@
             this.RunButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.InsertOperationButton = new System.Windows.Forms.Button();
+            this.NewButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +80,7 @@
             // 
             // SetTextButton
             // 
-            this.SetTextButton.Location = new System.Drawing.Point(139, 140);
+            this.SetTextButton.Location = new System.Drawing.Point(289, 55);
             this.SetTextButton.Name = "SetTextButton";
             this.SetTextButton.Size = new System.Drawing.Size(75, 23);
             this.SetTextButton.TabIndex = 1;
@@ -92,7 +94,7 @@
             this.listBox1.HorizontalScrollbar = true;
             this.listBox1.Location = new System.Drawing.Point(13, 42);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(456, 173);
+            this.listBox1.Size = new System.Drawing.Size(386, 173);
             this.listBox1.TabIndex = 2;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -115,14 +117,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, 221);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(465, 175);
+            this.groupBox1.Size = new System.Drawing.Size(395, 175);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Control Identity";
             // 
             // ControlIDTextBox
             // 
-            this.ControlIDTextBox.Location = new System.Drawing.Point(362, 89);
+            this.ControlIDTextBox.Location = new System.Drawing.Point(124, 149);
             this.ControlIDTextBox.Name = "ControlIDTextBox";
             this.ControlIDTextBox.Size = new System.Drawing.Size(62, 20);
             this.ControlIDTextBox.TabIndex = 13;
@@ -130,7 +132,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(268, 92);
+            this.label6.Location = new System.Drawing.Point(21, 152);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 12;
@@ -138,14 +140,14 @@
             // 
             // windowHwndTextBox
             // 
-            this.windowHwndTextBox.Location = new System.Drawing.Point(109, 62);
+            this.windowHwndTextBox.Location = new System.Drawing.Point(124, 62);
             this.windowHwndTextBox.Name = "windowHwndTextBox";
             this.windowHwndTextBox.Size = new System.Drawing.Size(108, 20);
             this.windowHwndTextBox.TabIndex = 11;
             // 
             // ListButton
             // 
-            this.ListButton.Location = new System.Drawing.Point(395, 140);
+            this.ListButton.Location = new System.Drawing.Point(289, 140);
             this.ListButton.Name = "ListButton";
             this.ListButton.Size = new System.Drawing.Size(48, 23);
             this.ListButton.TabIndex = 10;
@@ -155,7 +157,7 @@
             // 
             // ClickButton
             // 
-            this.ClickButton.Location = new System.Drawing.Point(301, 140);
+            this.ClickButton.Location = new System.Drawing.Point(289, 111);
             this.ClickButton.Name = "ClickButton";
             this.ClickButton.Size = new System.Drawing.Size(75, 23);
             this.ClickButton.TabIndex = 9;
@@ -165,7 +167,7 @@
             // 
             // GetTextButton
             // 
-            this.GetTextButton.Location = new System.Drawing.Point(220, 140);
+            this.GetTextButton.Location = new System.Drawing.Point(289, 82);
             this.GetTextButton.Name = "GetTextButton";
             this.GetTextButton.Size = new System.Drawing.Size(75, 23);
             this.GetTextButton.TabIndex = 8;
@@ -175,7 +177,7 @@
             // 
             // FindControlButton
             // 
-            this.FindControlButton.Location = new System.Drawing.Point(21, 140);
+            this.FindControlButton.Location = new System.Drawing.Point(289, 29);
             this.FindControlButton.Name = "FindControlButton";
             this.FindControlButton.Size = new System.Drawing.Size(100, 23);
             this.FindControlButton.TabIndex = 4;
@@ -185,14 +187,14 @@
             // 
             // ControlIndexTextBox
             // 
-            this.ControlIndexTextBox.Location = new System.Drawing.Point(362, 29);
+            this.ControlIndexTextBox.Location = new System.Drawing.Point(124, 92);
             this.ControlIndexTextBox.Name = "ControlIndexTextBox";
             this.ControlIndexTextBox.Size = new System.Drawing.Size(62, 20);
             this.ControlIndexTextBox.TabIndex = 7;
             // 
             // WindowTitleTextBox
             // 
-            this.WindowTitleTextBox.Location = new System.Drawing.Point(109, 26);
+            this.WindowTitleTextBox.Location = new System.Drawing.Point(124, 26);
             this.WindowTitleTextBox.Name = "WindowTitleTextBox";
             this.WindowTitleTextBox.Size = new System.Drawing.Size(153, 20);
             this.WindowTitleTextBox.TabIndex = 6;
@@ -200,7 +202,7 @@
             // ControlHwndLabel
             // 
             this.ControlHwndLabel.AutoSize = true;
-            this.ControlHwndLabel.Location = new System.Drawing.Point(359, 65);
+            this.ControlHwndLabel.Location = new System.Drawing.Point(121, 128);
             this.ControlHwndLabel.Name = "ControlHwndLabel";
             this.ControlHwndLabel.Size = new System.Drawing.Size(91, 13);
             this.ControlHwndLabel.TabIndex = 4;
@@ -209,7 +211,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(268, 65);
+            this.label3.Location = new System.Drawing.Point(21, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 13);
             this.label3.TabIndex = 3;
@@ -227,7 +229,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(268, 29);
+            this.label2.Location = new System.Drawing.Point(21, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 1;
@@ -246,13 +248,14 @@
             // 
             this.ProgramList.FormattingEnabled = true;
             this.ProgramList.HorizontalScrollbar = true;
-            this.ProgramList.Location = new System.Drawing.Point(494, 42);
+            this.ProgramList.Location = new System.Drawing.Point(405, 42);
             this.ProgramList.Name = "ProgramList";
-            this.ProgramList.Size = new System.Drawing.Size(446, 173);
+            this.ProgramList.Size = new System.Drawing.Size(535, 173);
             this.ProgramList.TabIndex = 4;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.DeleteButton);
             this.groupBox2.Controls.Add(this.InsertOperationButton);
             this.groupBox2.Controls.Add(this.AddOperationButton);
             this.groupBox2.Controls.Add(this.ArgumentsTextBox);
@@ -262,16 +265,26 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.InstalledCommandsList);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(494, 221);
+            this.groupBox2.Location = new System.Drawing.Point(405, 221);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(446, 175);
+            this.groupBox2.Size = new System.Drawing.Size(535, 175);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
+            // InsertOperationButton
+            // 
+            this.InsertOperationButton.Location = new System.Drawing.Point(454, 55);
+            this.InsertOperationButton.Name = "InsertOperationButton";
+            this.InsertOperationButton.Size = new System.Drawing.Size(75, 23);
+            this.InsertOperationButton.TabIndex = 15;
+            this.InsertOperationButton.Text = "Insert";
+            this.InsertOperationButton.UseVisualStyleBackColor = true;
+            this.InsertOperationButton.Click += new System.EventHandler(this.InsertOperationButton_Click);
+            // 
             // AddOperationButton
             // 
-            this.AddOperationButton.Location = new System.Drawing.Point(367, 26);
+            this.AddOperationButton.Location = new System.Drawing.Point(454, 26);
             this.AddOperationButton.Name = "AddOperationButton";
             this.AddOperationButton.Size = new System.Drawing.Size(75, 23);
             this.AddOperationButton.TabIndex = 14;
@@ -346,7 +359,7 @@
             // 
             // OpenButton
             // 
-            this.OpenButton.Location = new System.Drawing.Point(494, 13);
+            this.OpenButton.Location = new System.Drawing.Point(575, 13);
             this.OpenButton.Name = "OpenButton";
             this.OpenButton.Size = new System.Drawing.Size(75, 23);
             this.OpenButton.TabIndex = 15;
@@ -356,7 +369,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(575, 12);
+            this.SaveButton.Location = new System.Drawing.Point(656, 12);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 16;
@@ -366,7 +379,7 @@
             // 
             // RunButton
             // 
-            this.RunButton.Location = new System.Drawing.Point(656, 12);
+            this.RunButton.Location = new System.Drawing.Point(737, 12);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(75, 23);
             this.RunButton.TabIndex = 17;
@@ -378,21 +391,32 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // InsertOperationButton
+            // NewButton
             // 
-            this.InsertOperationButton.Location = new System.Drawing.Point(365, 55);
-            this.InsertOperationButton.Name = "InsertOperationButton";
-            this.InsertOperationButton.Size = new System.Drawing.Size(75, 23);
-            this.InsertOperationButton.TabIndex = 15;
-            this.InsertOperationButton.Text = "Insert";
-            this.InsertOperationButton.UseVisualStyleBackColor = true;
-            this.InsertOperationButton.Click += new System.EventHandler(this.InsertOperationButton_Click);
+            this.NewButton.Location = new System.Drawing.Point(494, 13);
+            this.NewButton.Name = "NewButton";
+            this.NewButton.Size = new System.Drawing.Size(75, 23);
+            this.NewButton.TabIndex = 18;
+            this.NewButton.Text = "New";
+            this.NewButton.UseVisualStyleBackColor = true;
+            this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(454, 82);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.TabIndex = 16;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 402);
+            this.Controls.Add(this.NewButton);
             this.Controls.Add(this.RunButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.OpenButton);
@@ -449,5 +473,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button InsertOperationButton;
+        private System.Windows.Forms.Button NewButton;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }

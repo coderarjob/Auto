@@ -17,9 +17,26 @@ namespace omnirover.auto.Operations
 
         public override string Name => "MessageBox";
 
+        public override string OperationString
+        {
+            get
+            {
+                if (Control == null)
+                {
+                    return string.Format("MessageBox: '{0}'", Arguments[0]);
+                }
+                else
+                {
+                    return string.Format("MessageBox: '{0}' To control: ID={1}, Index:{2}, Window: '{3}'",
+                            Arguments[0], Control.ControlID, Control.Index, Control.WindowTitle);
+
+                }
+            }
+        }
+
         public override void Execute()
         {
-            if (Args != null)
+            if (Arguments != null)
             {
                 IWin32Window owner = null;
                 if (Control != null)
@@ -28,7 +45,7 @@ namespace omnirover.auto.Operations
                     IntPtr control = Control.GetControlHandle(out parent);
                     owner = new WindowWrapper(parent);
                 }
-                string msg = Args[0];
+                string msg = Arguments[0];
                 MessageBox.Show(owner,msg, "Automation",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
         }

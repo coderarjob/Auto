@@ -168,13 +168,13 @@ namespace omnirover.auto.APITest
             ProgramList.Items.Clear();
             foreach (BaseOperation step in currentProgram)
             {
-                string listItemString = String.Format("{0} > window:'{1}' control:'{2}' Arg:'{3}'",
-                    step.Name,
-                    ((step.Control != null) ? step.Control.WindowTitle : "n/a"),
-                    ((step.Control != null) ? string.Format($"ID:{step.Control.ControlID}, Index:{step.Control.Index}") : "n/a"),
-                    ((step.Arguments != null) ? string.Join(",", step.Arguments.ToArray()) : "n/a"));
+                //string listItemString = String.Format("{0} > window:'{1}' control:'{2}' Arg:'{3}'",
+                //    step.Name,
+                //    ((step.Control != null) ? step.Control.WindowTitle : "n/a"),
+                //    ((step.Control != null) ? string.Format($"ID:{step.Control.ControlID}, Index:{step.Control.Index}") : "n/a"),
+                //    ((step.Arguments != null) ? string.Join(",", step.Arguments.ToArray()) : "n/a"));
 
-                ProgramList.Items.Add(listItemString);
+                ProgramList.Items.Add(step.OperationString);
             }
         }
 
@@ -233,6 +233,21 @@ namespace omnirover.auto.APITest
             if (SelectedIndex != -1)
             {
                 currentProgram.Insert(SelectedIndex, CreateOperationUsingCurrentUIValues());
+                ReloadProgramList();
+            }
+        }
+
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            currentProgram.Clear();
+            ReloadProgramList();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (ProgramList.SelectedIndex > -1)
+            {
+                currentProgram.RemoveAt(ProgramList.SelectedIndex);
                 ReloadProgramList();
             }
         }

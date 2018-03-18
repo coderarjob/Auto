@@ -14,11 +14,19 @@ namespace omnirover.auto.Operations
 
         public override string Name => "Delay";
 
+        public override string OperationString
+        {
+            get
+            {
+                return string.Format("Delays for '{0}' ms.",Arguments[0]);
+            }
+        }
+
         public override void Execute()
         {
-           if (Args.Count > 0)
+           if (Arguments.Count > 0)
             {
-                int delay_ms = int.Parse(Args[0]);
+                int delay_ms = int.Parse(Arguments[0]);
                 System.Threading.Thread.Sleep(delay_ms);
             }
         }
